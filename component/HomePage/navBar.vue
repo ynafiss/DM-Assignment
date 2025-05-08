@@ -1,7 +1,9 @@
 <template>
     <nav class="navbar" data-testid="navbar">
         <div class="navbar__container">
-            <a class="navbar__logo" data-testid="logo">DM</a>
+            <div class="navbar__logo-container">
+                <a class="navbar__logo" data-testid="logo">DM</a>
+            </div> 
             <div class="navbar__controls">
                 <div class="search" data-testid="search-bar">
                     <input class="search__input" type="text" placeholder="Search...">
@@ -19,40 +21,51 @@
     $self: &;
     background-color: #FFFFFF;
     border: 1px solid rgba(195, 212, 233, 0.4);
-    width: 100%;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
+    width: 1440px;
+    height: 120px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     
     &__container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 80%;
+        width: 100%;
     }
     
     &__logo {
         font-size: 2rem;
         font-weight: bold;
         text-decoration: none;
-        margin-right: 20px;
+        margin-right: 50px;
+        width: 100px;
         color: #3563E9;
     }
     
+    &__logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        margin-left: 95px;
+    }
+
     &__controls {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         width: 100%;
+        position: relative;
     }
     
     &__action {
+        position: absolute;
         height: 44px;
-        margin-left: 60px;
+        right: 60px;
     }
 }
 
@@ -63,7 +76,7 @@
     margin-right: 10px;
     
     &__input {
-        width: 100%;
+        width: 85%;
         height: 100%;
         border-radius: 70px;
         border: 1px solid rgba(195, 212, 233, 0.4);
@@ -71,12 +84,13 @@
         color: #596780;
         font-weight: 500;
         font-size: 14px;
+        
     }
     
     &__icon {
         position: absolute;
         top: 50%;
-        left: 15px;
+        left: 20px;
         transform: translateY(-50%);
         height: 20px;
         pointer-events: none;

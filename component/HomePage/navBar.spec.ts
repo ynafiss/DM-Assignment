@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
-import { mount, VueWrapper } from '@vue/test-utils'
+import { render, screen } from '@testing-library/vue'
 import { setup } from '@nuxt/test-utils'
 import NavBar from './navBar.vue'
 
@@ -11,25 +11,23 @@ beforeAll(async () => {
 })
 
 describe('NavBar', () => {
-  let wrapper: VueWrapper
-
   beforeEach(() => {
-    wrapper = mount(NavBar)
+    render(NavBar)
   })
   
   it('renders the navbar', () => {
-    expect(wrapper.find('[data-testid="navbar"]').exists()).toBeTruthy()
+    expect(screen.getByTestId('navbar')).toBeInTheDocument()
   })
   
   it('renders the logo', () => {
-    expect(wrapper.find('[data-testid="logo"]').text()).toBe('DM')
+    expect(screen.getByTestId('logo')).toHaveTextContent('DM')
   })
   
   it('renders the search bar', () => {
-    expect(wrapper.find('[data-testid="search-bar"]').exists()).toBeTruthy()
+    expect(screen.getByTestId('search-bar')).toBeInTheDocument()
   })
   
   it('renders the like button', () => {
-    expect(wrapper.find('[data-testid="like-icon"]').exists()).toBeTruthy()
+    expect(screen.getByTestId('like-icon')).toBeInTheDocument()
   })
 })
