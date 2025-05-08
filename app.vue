@@ -1,13 +1,25 @@
 <script setup lang="ts">
 import NavBar from './component/HomePage/navBar.vue';
 import CarCards from './component/HomePage/CarCard.vue';
+import smallCards from './component/HomePage/smallCards.vue';
 
+
+const sampleCar = {
+  title: 'Koenigsegg',
+  subtitle: 'Sport',
+  image: '../../assets/car.png',
+  fuelCapacity: '90L',
+  transmission: 'Manual',
+  capacity: '2 People',
+  price: 99.00
+};
 </script>
 
 <template>
   <section class="home">
     <NavBar />
     <CarCards />
+    <smallCards :car="sampleCar" />
   </section>
 </template>
 
