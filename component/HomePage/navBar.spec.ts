@@ -1,7 +1,8 @@
-import { describe, it, expect, beforeAll } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { setup, $fetch } from '@nuxt/test-utils'
+import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
+import { render, screen } from '@testing-library/vue'
+import { setup } from '@nuxt/test-utils'
 import NavBar from './navBar.vue'
+import '@testing-library/jest-dom'
 
 beforeAll(async () => {
   await setup({
@@ -10,24 +11,31 @@ beforeAll(async () => {
   })
 })
 
-describe('NavBar', () => {
-  it('renders the navbar', async () => {
-    const wrapper = mount(NavBar)
-    expect(wrapper.find('[data-testid="navbar"]').exists()).toBe(true)
-  })
-  
-  it('renders the logo', async () => {
-    const wrapper = mount(NavBar)
-    expect(wrapper.find('[data-testid="logo"]').text()).toBe('DM')
-  })
-  
-  it('renders the search bar', async () => {
-    const wrapper = mount(NavBar)
-    expect(wrapper.find('[data-testid="search-bar"]').exists()).toBe(true)
-  })
-  
-  it('renders the like button', async () => {
-    const wrapper = mount(NavBar)
-    expect(wrapper.find('[data-testid="like-icon"]').exists()).toBe(true)
+describe('Given the NavBar component', () => {
+  describe('When it is rendered', () => {
+    beforeEach(() => {
+      render(NavBar)
+    })
+    
+    it('Then it should display the navbar container', () => {
+      const navbar = screen.getByTestId('navbar');
+      expect(navbar).toBeInTheDocument()
+    })
+    
+    it('Then it should display the logo with correct text', () => {
+      const logo = screen.getByTestId('logo');
+      expect(logo).toBeInTheDocument()
+      expect(logo).toHaveTextContent('DM')
+    })
+    
+    it('Then it should display the search bar', () => {
+      const searchBar = screen.getByTestId('search-bar');
+      expect(searchBar).toBeInTheDocument()
+    })
+    
+    it('Then it should display the like button', () => {
+      const likeIcon = screen.getByTestId('like-icon');
+      expect(likeIcon).toBeInTheDocument()
+    })
   })
 })
